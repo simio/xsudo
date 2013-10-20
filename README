@@ -33,3 +33,10 @@ as that user.
     -u <user>
         Use sudo to impersonate <user> instead of the super-user.
         If the specified user does not exist, xsudo.sh exits with 1.
+
+
+LINKS
+
+Swedish readers might be interested in the article about writing xsudo.sh:
+
+    http://huggpunkt.org/xsudo-sh-en-skriptad-x11-wrapper-for-sudo
