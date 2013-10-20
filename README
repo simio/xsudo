@@ -8,7 +8,8 @@ of GTK and Qt, the dependency is OpenSSH.
 INSTALLATION
 
 Check the first section of the script for any configuration values you
-need to adapt to your system. Also check that ssh-askpass in installed.
+need to adapt to your system. Also check that ssh-askpass in available
+on your machine.
 
 You are recommended to install the script in a location and with such
 permissions that only root is allowed to modify it. This should do:
