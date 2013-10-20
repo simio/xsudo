@@ -21,7 +21,7 @@ This should do the trick:
 
 USAGE
 
-   $ xsudo.sh [-t] [-u user] <command>'
+    $ xsudo.sh [-t] [-u user] <command>'
 
 Grants access for <user> to DISPLAY and uses sudo to run <command>
 as that user.
@@ -44,21 +44,20 @@ TIPS
 
     1. Create a local user for your browser, for exampe "_web".
 
-	2. Move your current browser config into ~/_web, like this
-	   for Chromium:
+    2. Move your current browser config into ~/_web, like this
+       for Chromium:
 
            $ umask 077
            $ sudo -u _web mkdir -p ~_web/.config
            $ sudo cp -r ~/.config/chromium ~_web/.config/
            $ sudo chown -R _web._web ~_web/.config/chromium
 
-	3. From now on, start Chromium with this:
+    3. From now on, start Chromium with this:
 
            /bin/sh /usr/opt/bin/xsudo.sh -tu _web /usr/local/bin/chrome
 
-	   Put it in a shell script chmodded +x.
-
-	   (Dropping -t increases security but decreases graphics speed.)
+       Put it in a shell script chmodded +x. Dropping the -t increases
+       inter-application security but decreases graphics speed.)
 
 
 * Swedish readers might be interested in reading about writing xsudo.sh:
