@@ -1,0 +1,35 @@
+xsudo.sh is an X11 sudo wrapper. It is intended to do what GKsu, GKsudo,
+kdesu and kdesudo does, but instead of being requiring GTK or Qt, all
+xsudo.sh requires is OpenSSH to be installed.
+
+The script is written to be fully Bourne shell compatible.
+
+
+INSTALLATION
+
+Check the first section of the script for any configuration values you
+need to adapt to your system. Also check that ssh-askpass in installed.
+
+You are recommended to install the script in a location and with such
+permissions that only root is allowed to modify it. This should do:
+
+    $ sudo install xsudo.sh /usr/opt/bin
+
+
+USAGE
+
+   $ xsudo.sh [-t] [-u user] <command>'
+
+Grants access for <user> to DISPLAY and uses sudo to run <command>
+as that user.
+
+    -t
+        Use a trusted MIT cookie instead of an untrusted. This enables
+        X11 extensions, which on the one hand enables accelerated
+        graphics and unbreaks the ISO_Level3_Shift (Alt Gr) modifier,
+        but on the other hand allows the invoked command to access every
+        X11 event, essentially obliterating inter-program security.
+
+    -u <user>
+        Use sudo to impersonate <user> instead of the super-user.
+        If the specified user does not exist, xsudo.sh exits with 1.
