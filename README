@@ -1,8 +1,8 @@
-xsudo.sh is an X11 sudo wrapper. It is intended to do what GKsu, GKsudo,
-kdesu and kdesudo does, but instead of being requiring GTK or Qt, all
-xsudo.sh requires is OpenSSH to be installed.
+xsudo.sh is an X11 sudo wrapper. It is intended to do what gksudo and
+kdesudo does without the excessive dependencies of GTK or Qt.
 
-The script is written to be fully Bourne shell compatible.
+The script is written to be fully Bourne shell compatible. Instead
+of GTK and Qt, the dependency is OpenSSH.
 
 
 INSTALLATION
