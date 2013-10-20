@@ -57,7 +57,7 @@ TIPS
            /bin/sh /usr/opt/bin/xsudo.sh -tu _web /usr/local/bin/chrome
 
        Put it in a shell script chmodded +x. Dropping the -t increases
-       inter-application security but decreases graphics speed.)
+       inter-application security but decreases graphics speed.
 
 
 * Swedish readers might be interested in reading about writing xsudo.sh:
