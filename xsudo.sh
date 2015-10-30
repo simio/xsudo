@@ -28,7 +28,7 @@
 #XSUDO_USE_DOAS=Yes
 
 # Locations. Use full paths!
-WHICH_SUDO=/usr/bin/doas
+WHICH_SUDO=/usr/local/bin/sudo
 WHICH_ASKPASS=/usr/X11R6/bin/ssh-askpass
 WHICH_USERINFO=/usr/sbin/userinfo
 WHICH_XAUTH=/usr/X11R6/bin/xauth
