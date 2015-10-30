@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# xsudo.sh v1.3, 2012-08-25, jesper at huggpunkt.org
+# xsudo.sh v1.4 2015-10-30, jesper at huggpunkt.org
 # Usage is 'xsudo.sh [-t] [-u user] <command>'
 #
 # Grants access for <user> to DISPLAY and uses sudo to run <command>
@@ -23,8 +23,12 @@
 ##	You might need to adapt the stuff below to your system.
 ##
 
+# Set this variable here or in your environment
+# If using doas instead of sudo, don't forget to change WHICH_SUDO
+#XSUDO_USE_DOAS=Yes
+
 # Locations. Use full paths!
-WHICH_SUDO=/usr/bin/sudo
+WHICH_SUDO=/usr/bin/doas
 WHICH_ASKPASS=/usr/X11R6/bin/ssh-askpass
 WHICH_USERINFO=/usr/sbin/userinfo
 WHICH_XAUTH=/usr/X11R6/bin/xauth
@@ -89,16 +93,22 @@ user_exists "$USERNAME"
 # Get USER_HOME dir
 get_user_home "$USERNAME"
 
-if [ X$USER_HOME != X$NO_HOME_DIR -a X$USER_HOME != X ]; then
-	SUDO_PARAMS=-AHu
+if [ X$XSUDO_USE_DOAS != X ]; then
+	SUDO_PARAMS=-u
+	SUDO_A_PARAM=""
 else
-	SUDO_PARAMS=-Au
+	SUDO_A_PARAM="-A"
+	if [ X$USER_HOME != X$NO_HOME_DIR -a X$USER_HOME != X ]; then
+		SUDO_PARAMS=-AHu
+	else
+		SUDO_PARAMS=-Au
+	fi
 fi
 
 umask 077
 NEW_XAUTHORITY=$($WHICH_MKTEMP "/tmp/$USERNAME"_xauth.XXXXXXXX)
 $WHICH_XAUTH -f $NEW_XAUTHORITY generate $DISPLAY . $TRUST
-$WHICH_SUDO -A /bin/sh -c "( \
+$WHICH_SUDO $SUDO_A_PARAM /bin/sh -c "( \
 	$WHICH_CHOWN $USERNAME.$WHEEL $NEW_XAUTHORITY; \
 	$WHICH_SUDO $SUDO_PARAMS $USERNAME \
 		env DISPLAY=$DISPLAY \
